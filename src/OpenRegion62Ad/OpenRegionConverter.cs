@@ -1,5 +1,6 @@
 ﻿using OpenRegion62Ad.Configuration;
 using OpenRegion62Ad.Entities;
+using OpenRegion62Ad.Serialization;
 using System.Text.Json;
 
 namespace OpenRegion62Ad;
@@ -45,17 +46,17 @@ internal class OpenRegionConverter
                         .OrderBy(item => item))
                     : null,
                 DisplayDateBefore = entity.Times.Any()
-                    ? DateOnly.FromDateTime(entity.Times
+                    ? entity.Times
                         .Select(item => item.When)
-                        .Max())
+                        .Max()
                     : null,
             };
 
             outputList.Add(outputEntity);
         }
 
-        using FileStream stream = File.OpenWrite(fileName);
+        using FileStream stream = File.Create(fileName);
 
-        await JsonSerializer.SerializeAsync(stream, outputList, JsonSerializerOptions.Default, cancellationToken);
+        await JsonSerializer.SerializeAsync(stream, outputList, ApplicationJsonSerializerOptions.Custom, cancellationToken);
     }
 }

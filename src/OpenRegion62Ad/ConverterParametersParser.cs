@@ -12,7 +12,7 @@ internal class ConverterParametersParser
 		if (args.Length < 4)
 			return null;
 
-		if (!args.All(item => _requiredArgs.Contains(item)))
+		if (!args.Any(item => _requiredArgs.Contains(item, StringComparer.OrdinalIgnoreCase)))
 			return null;
 
 		int uriIndex = Array.IndexOf(args, URI_ARG);

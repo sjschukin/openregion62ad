@@ -9,5 +9,5 @@ internal class EventOutputEntity
 	public required string Location { get; init; }
 	public DateTime? StartDate { get; init; }
 	public string? Description { get; init; }
-	public DateOnly? DisplayDateBefore { get; init; }
+	public DateTime? DisplayDateBefore { get; init; }
 }

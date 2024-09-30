@@ -16,5 +16,5 @@ internal class EventEntity
     public required IReadOnlyCollection<TimesEntity> Times { get; init; }
 
     [JsonPropertyName("org")]
-    public OrganizationEntity? Organization { get; init; }
+    public required OrganizationEntity? Organization { get; init; }
 }
